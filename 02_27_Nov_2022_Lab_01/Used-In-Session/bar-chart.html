@@ -1,0 +1,122 @@
+
+<style>
+
+  .vertical-bar-graph{
+
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    background-color: lightgray;
+    /*height: 400px;*/
+  }
+
+  .bar-with-percentage{
+    display: inline-block;
+    text-align: center;
+  }
+
+  .vertical-bar-inner-1{
+    display: inline-block;
+    width: 30px;
+    height: 250px;    
+    background-color: darkgray;
+    margin: 1em;
+  }
+
+  .vertical-bar-inner-2{
+    background-color: white;
+    height: 100%;
+  }
+
+  #bar1 .vertical-bar-inner-2 {
+    animation-name: bar1filler;
+    animation-duration: 3s;
+  }
+
+  @keyframes bar1filler {
+    0% {
+      height: 100%;
+    }
+    100%{
+      height: 70%;
+    }
+  }
+
+
+  #bar2 .vertical-bar-inner-2 {
+    animation-name: bar2filler;
+    animation-duration: 3s;
+  }
+
+  @keyframes bar2filler {
+    0% {
+      height: 100%;
+    }
+
+    40%{
+      height: 80;
+    }
+
+    70%{
+      height: 70;
+    }
+
+
+    100%{
+      height: 60%;
+    }
+  }
+
+
+  #bar3 .vertical-bar-inner-2 {
+    animation-name: bar3filler;
+    animation-duration: 3s;
+  }
+
+  @keyframes bar3filler {
+    0% {
+      height: 100%;
+    }
+    100%{
+      height: 20%;
+    }
+  }
+
+</style>
+
+<div class="vertical-bar-graph">
+
+  <div class="bar-with-percentage">
+    <div class="vertical-bar-inner-1" id="bar1">
+
+      <div class="vertical-bar-inner-2">
+
+      </div>
+    </div>
+    <br>
+    30%
+  </div>
+
+  <div class="bar-with-percentage">
+    <div class="vertical-bar-inner-1" id="bar2">
+
+      <div class="vertical-bar-inner-2">
+
+      </div>
+    </div>
+    <br>
+    40%
+  </div>
+
+  <div class="bar-with-percentage">
+    <div class="vertical-bar-inner-1" id="bar3">
+
+      <div class="vertical-bar-inner-2">
+
+      </div>
+    </div>
+    <br>
+    80%
+  </div>
+
+</div>

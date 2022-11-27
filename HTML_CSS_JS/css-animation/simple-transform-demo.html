@@ -1,0 +1,43 @@
+
+<style>
+
+.box{
+  height: 300px;
+  width: 300px;
+  margin-top: 50px;
+  margin-left: 75px;
+
+  background-color: aqua;
+}
+
+.box-animation{
+
+  animation: expansion-shrinking;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes expansion-shrinking {
+  
+  0%{
+    transform: scale(1);
+  }
+
+  25%{
+    transform: scale(1.5);
+  }
+
+  55%{
+    transform: scale(3.5);
+  }
+
+  100%{
+    transform: scale(0.5);
+  }
+}
+
+</style>
+
+<div class="box box-animation">
+
+</div>

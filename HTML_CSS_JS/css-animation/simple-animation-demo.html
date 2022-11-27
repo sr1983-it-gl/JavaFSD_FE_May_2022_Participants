@@ -1,0 +1,72 @@
+<style>
+
+.animationContainer{
+  width: 500px;
+  height: 500px;
+  background-color: burlywood;
+  border: 3px solid darkblue;
+}
+
+.redbox{
+  width: 250px;
+  height: 200px;
+  background-color: tomato;
+  border: 3px dashed coral;
+}
+
+@keyframes slide_box_left_right{
+
+  from{
+    transform: translate(200px, 0);
+  }
+  to{
+    transform: translate(0, 0);
+  }
+}
+
+.animation_left_right{
+  animation: slide_box_left_right; 
+  animation-duration: 3s;
+  animation-iteration-count: 3;
+}
+
+.animation_right_left{
+  animation: slide_box_right_left; 
+  animation-duration: 3s;
+  animation-iteration-count: 3;
+}
+
+@keyframes slide_box_right_left{
+
+from{
+  transform: translate(0, 0);
+}
+to{
+  transform: translate(200px, 0);
+}
+}
+</style>
+<body>
+
+
+  
+</body>
+
+<div class="animationContainer">
+
+    <p>Sliding the box from left to right</p>
+    <div class="redbox animation_left_right">
+
+    </div>
+</div>
+
+
+<div class="animationContainer">
+
+  <p>Sliding the box right  to left</p>
+  <div class="redbox animation_right_left">
+
+  </div>
+</div>
+
+

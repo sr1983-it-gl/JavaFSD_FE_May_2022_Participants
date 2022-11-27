@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<head>
+    <title>Sign Up</title>
+    <style>
+    h2{
+        text-align: center;
+    }
+    .signin{
+        color: white;
+        width: 500px;
+        padding: 10px;
+        position: absolute;
+        font-size: 20px;
+        top: 5%;
+        left: 30%;
+        line-height: 50px;
+        border-radius: 10px;
+        background: transparent;
+        text-align: left;
+        vertical-align: middle;
+    }
+    input{
+        height: 30px;
+        width: 45%;
+        padding-left: 10px;
+        border-radius: 8px;
+    }
+    button{
+        width:120px;
+        height: 50px;
+        padding: 5px;
+        float: right;
+        vertical-align: middle;
+        font-size: 25px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        border-radius: 10px;
+        background-color: rgb(67, 185, 67);
+        color: white;
+    }
+    #myVideo{
+        position: fixed;
+        width: auto;
+        height: auto;
+    }
+    #lname{
+        margin-left: 30%;
+    }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="Background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="signin">
+        <h2>Sign Up</h2>
+        <form action="Log In.html">
+
+            <label for="F_name">First Name:</label>
+            <label for="L_name" id="lname">Last Name: </label><br>
+            <input type="text" name="F_name" placeholder="Enter First Name" required>            
+            <input type="text" name="L_name" placeholder="Enter Last Name" required><br>
+
+            <label for="u_email">Email Id: </label><br>
+            <input type="email" name="u_email" placeholder="Enter Email Id" required><br>
+
+            <label for="u_name">Username: </label><br>
+            <input type="text" name="u_name" placeholder="Enter Username of your choice" required><br>
+
+            <label for="u_pswd">Enter Password: </label><br>
+            <input type="password" name="u_pswd" placeholder="Enter Password" minlength="8" required><br>
+            
+            <label for="u_repswd">Re-enter Password: </label><br>
+            <input type="password" name="repswd" placeholder="Re-enter Password"  minlength="8" required><br>
+            
+            <button>Submit</button>
+        </form>
+    </div>
+</body>
+</html>
