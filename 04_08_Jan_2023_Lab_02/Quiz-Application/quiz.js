@@ -88,10 +88,78 @@ const qa5 = new QuestionAnswer(question5,
 function QuizApplication(qaArray){
 
   this.qaArray = qaArray;
+  this.pageIndex = 0;
+  this.score = 0;
 
-  this.loadAndStart = function(){
+  this.init = function(){
 
+    this.initAndDisplayPage();
+  }
+
+  this.initAndDisplayPage = function(){
+
+    this.pageIndex = 0;
+    this.attachListeners();
     this.displayQuizPage();
+  }
+
+  this.initAndDisplayNextPage = function(){
+
+    this.pageIndex ++;
+    this.attachListeners();
+    this.displayQuizPage();
+  }
+
+  this.attachListeners = function(){
+
+    const questionAnswerObj = qaArray[this.pageIndex];
+    const currentQuizApplicationObj = this;
+
+    for (let index = 0; index < questionAnswerObj.answerChoicesObj.length; index ++){
+
+      let buttonId = "btn" + index; 
+      const answerChoiceHtmlButtonElement =  document.getElementById(buttonId);
+
+      answerChoiceHtmlButtonElement.onclick = function(event){
+
+        const currentTarget = event.currentTarget;
+
+        // Correct Answer Check
+        // Track / Increment Score [Calcualte Percentage]
+
+        const userSelectedAnswer = currentTarget.children[0].innerHTML;;
+        const result = questionAnswerObj.isItACorrectAnswer(userSelectedAnswer);
+        if (result){
+          currentQuizApplicationObj.incrementScore()
+        }
+
+        // Forward to Next
+        currentQuizApplicationObj.next();
+      }
+    }
+  }
+
+  this.incrementScore = function(){
+
+    this.score ++;
+  }
+
+  this.next = function(){
+
+    if (this.isThisTheLastQuestion()){
+      this.displayResultPage();
+    }else{
+     this.initAndDisplayNextPage(); 
+    }
+  }
+
+  this.isThisTheLastQuestion = function(){
+
+    if (this.pageIndex === this.qaArray.length - 1){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   this.displayQuizPage = function(){
@@ -102,7 +170,7 @@ function QuizApplication(qaArray){
 
   this.displayQASection = function(){
 
-    const questionAnswerObj = qaArray[0];
+    const questionAnswerObj = qaArray[this.pageIndex];
 
     // Setting the question text
     const questionText = questionAnswerObj.questionObj.questionText;
@@ -129,7 +197,7 @@ function QuizApplication(qaArray){
     // Single Quote - '
     // Backtick - `
 
-    const questionAnswerObj = qaArray[0];
+    const questionAnswerObj = qaArray[this.pageIndex];
     const questionNo = questionAnswerObj.questionObj.questionNo;
 
     const totalNoOfQuestions = qaArray.length;
@@ -139,9 +207,24 @@ function QuizApplication(qaArray){
     const progressHtmlElement = document.getElementById("progress");
     progressHtmlElement.innerHTML = progressText;
   }
+
+  this.displayResultPage = function(){
+
+    const percentage = (this.score / this.qaArray.length) * 100;
+
+    const resultPageContent = `
+      <h1>Quiz Result</h1>
+      <h3 id='score'> 
+      Your scores ${this.score}. Mark Percentage ${percentage}
+      </h3>
+      `
+
+    const quizHtmlElement = document.getElementById("quiz");
+    quizHtmlElement.innerHTML = resultPageContent;
+  }
 }
 
 const quizApplication = new QuizApplication(
   [qa1, qa2, qa3, qa4, qa5]
 );
-quizApplication.loadAndStart();
+quizApplication.init();
