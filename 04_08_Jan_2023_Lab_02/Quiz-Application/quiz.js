@@ -4,11 +4,12 @@ function Question(questionText, questionNo){
   this.questionNo = questionNo;
 }
 
-let question1 = new Question("JavaScript supports", 1);
-let question2 = new Question("Which language is used for styling web pages?", 2);
-let question3 = new Question("Which is not a JavaScript Framework?", 3);
-let question4 = new Question("Which is used for Connect To Database?", 4);
-let question5 = new Question("JavaScript is a", 5);
+
+const question1 = new Question("JavaScript supports", 1);
+const question2 = new Question("Which language is used for styling web pages?", 2);
+const question3 = new Question("Which is not a JavaScript Framework?", 3);
+const question4 = new Question("Which is used for Connect To Database?", 4);
+const question5 = new Question("JavaScript is a", 5);
 
 
 function Answer(answerText){
@@ -17,31 +18,56 @@ function Answer(answerText){
 }
 
 // Question 1
-let answer1Q1 = new Answer("Functions");
-let answer2Q1 = new Answer("XHTML");
-let answer3Q1 = new Answer("CSS");
-let answer4Q1 = new Answer("HTML");
+const answer1Q1 = new Answer("Functions");
+const answer2Q1 = new Answer("XHTML");
+const answer3Q1 = new Answer("CSS");
+const answer4Q1 = new Answer("HTML");
 
 // Question 2
-let answer1Q2 = new Answer("HTML");
-let answer2Q2 = new Answer("JQuery");
-let answer3Q2 = new Answer("CSS");
-let answer4Q2 = new Answer("XML");
+const answer1Q2 = new Answer("HTML");
+const answer2Q2 = new Answer("JQuery");
+const answer3Q2 = new Answer("CSS");
+const answer4Q2 = new Answer("XML");
 
 // Question 3
-let answer1Q3 = new Answer("Python Script");
-let answer2Q3 = new Answer("JQuery");
-let answer3Q3 = new Answer("Django");
-let answer4Q3 = new Answer("NodeJS");
+const answer1Q3 = new Answer("Python Script");
+const answer2Q3 = new Answer("JQuery");
+const answer3Q3 = new Answer("Django");
+const answer4Q3 = new Answer("NodeJS");
 
 // Question 4
-let answer1Q4 = new Answer("PHP");
-let answer2Q4 = new Answer("HTML");
-let answer3Q4 = new Answer("JS");
-let answer4Q4 = new Answer("All");
+const answer1Q4 = new Answer("PHP");
+const answer2Q4 = new Answer("HTML");
+const answer3Q4 = new Answer("JS");
+const answer4Q4 = new Answer("All");
 
 // Question 5
-let answer1Q5 = new Answer("Language");
-let answer2Q5 = new Answer("Programming Language");
-let answer3Q5 = new Answer("Development");
-let answer4Q5 = new Answer("All");
+const answer1Q5 = new Answer("Language");
+const answer2Q5 = new Answer("Programming Language");
+const answer3Q5 = new Answer("Development");
+const answer4Q5 = new Answer("All");
+
+
+function QuestionAnswer(questionObj, answerChoicesObj, correctAnswerObj){
+
+  this.questionObj = questionObj;
+  this.answerChoicesObj = answerChoicesObj;
+  this.correctAnswerObj = correctAnswerObj;
+}
+
+const qa1 = new QuestionAnswer(question1, 
+    [answer1Q1, answer2Q1, answer3Q1, answer4Q1], answer1Q1);
+
+const qa2 = new QuestionAnswer(question2, 
+    [answer1Q2, answer2Q2, answer3Q2, answer4Q2], answer3Q2);
+  
+const qa3 = new QuestionAnswer(question3, 
+  [answer1Q3, answer2Q3, answer3Q3, answer4Q3], answer3Q3);
+
+const qa4 = new QuestionAnswer(question4, 
+  [answer1Q4, answer2Q4, answer3Q4, answer4Q4], answer1Q4);
+
+const qa5 = new QuestionAnswer(question5, 
+  [answer1Q5, answer2Q5, answer3Q5, answer4Q5], answer2Q5);
+  
+  
