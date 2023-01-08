@@ -53,6 +53,20 @@ function QuestionAnswer(questionObj, answerChoicesObj, correctAnswerObj){
   this.questionObj = questionObj;
   this.answerChoicesObj = answerChoicesObj;
   this.correctAnswerObj = correctAnswerObj;
+
+
+  this.isItACorrectAnswer = function(userSelectedAnswer){
+
+    // '===' Type & Value
+    // '==' Value comparison alone
+    if (userSelectedAnswer === correctAnswerObj.answerText){
+      console.log("Correct Answer")
+      return true;
+    }else{
+      console.log("Incorrect Answer")
+      return false;
+    }
+  }
 }
 
 const qa1 = new QuestionAnswer(question1, 
@@ -71,3 +85,63 @@ const qa5 = new QuestionAnswer(question5,
   [answer1Q5, answer2Q5, answer3Q5, answer4Q5], answer2Q5);
   
   
+function QuizApplication(qaArray){
+
+  this.qaArray = qaArray;
+
+  this.loadAndStart = function(){
+
+    this.displayQuizPage();
+  }
+
+  this.displayQuizPage = function(){
+
+    this.displayQASection();
+    this.displayQuestionProgressSection();
+  }
+
+  this.displayQASection = function(){
+
+    const questionAnswerObj = qaArray[0];
+
+    // Setting the question text
+    const questionText = questionAnswerObj.questionObj.questionText;
+    const questionHtmlElement = document.getElementById("question");
+
+    questionHtmlElement.innerHTML = questionText;
+
+    // Setting the answer(s) text
+
+    const answerChoicesObj = questionAnswerObj.answerChoicesObj;
+    for (let index = 0; index < answerChoicesObj.length; index ++){
+
+      let answerChoiceHtmlElementName = "choice" + index;
+
+      const answerObj = answerChoicesObj[index];
+
+      const answerChoiceHtmlElement = document.getElementById(answerChoiceHtmlElementName);
+      answerChoiceHtmlElement.innerHTML = answerObj.answerText;
+    }
+  }
+
+  this.displayQuestionProgressSection = function(){
+
+    // Single Quote - '
+    // Backtick - `
+
+    const questionAnswerObj = qaArray[0];
+    const questionNo = questionAnswerObj.questionObj.questionNo;
+
+    const totalNoOfQuestions = qaArray.length;
+
+    let progressText = `Question ${questionNo} of ${totalNoOfQuestions}`;
+
+    const progressHtmlElement = document.getElementById("progress");
+    progressHtmlElement.innerHTML = progressText;
+  }
+}
+
+const quizApplication = new QuizApplication(
+  [qa1, qa2, qa3, qa4, qa5]
+);
+quizApplication.loadAndStart();
