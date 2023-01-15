@@ -1,0 +1,12 @@
+{
+  "name": "05_15_jan_2023_mentoring_03",
+  "version": "1.0.0",
+  "description": "",
+  "main": "food-app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type" : "module"
+}
