@@ -10,6 +10,46 @@ class WeatherAPI{
     this.apiUrl = new URL(API_BASE_URL);    
   }
 
+  invoke(){
+
+    this.buildURL();
+
+   fetch(this.apiUrl.toString())
+    .then( (response ) => {
+      return response.json()
+    } )
+    .then(  (responseAsJSON) => {
+      console.log(responseAsJSON)
+    })
+    .catch( (error) => {
+      console.log("Error invoking the API");
+      console.log(error);
+      return;
+    })
+
+  }
+
+  async invoke2(){
+
+    this.buildURL();
+
+    let response = await fetch(this.apiUrl.toString());
+
+    if (response.status == 200){
+
+      let responseAsJSON = response.json();
+      console.log(responseAsJSON);
+      return responseAsJSON;
+
+    }else{
+
+      console.log("API Invocation Error");
+      return "ERROR";
+
+    }
+  }
+
+
   buildURL(){
 
     this.apiUrl.searchParams.append("q", this.cityName);
