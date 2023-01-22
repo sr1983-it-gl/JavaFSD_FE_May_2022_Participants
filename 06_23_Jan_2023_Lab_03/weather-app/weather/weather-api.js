@@ -14,12 +14,13 @@ class WeatherAPI{
 
     this.buildURL();
 
-   fetch(this.apiUrl.toString())
+   return fetch(this.apiUrl.toString())
     .then( (response ) => {
       return response.json()
     } )
     .then(  (responseAsJSON) => {
       console.log(responseAsJSON)
+      return responseAsJSON;
     })
     .catch( (error) => {
       console.log("Error invoking the API");
