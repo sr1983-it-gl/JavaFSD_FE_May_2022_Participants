@@ -1,6 +1,8 @@
 
 import {useEffect} from "react"
 import {getAllExpenseItems} from "../services/expense"
+import {Container} from "react-bootstrap"
+import { ExpenseItems } from "./expense-items"
 
 const ExpenseTracker = () => {
 
@@ -16,14 +18,16 @@ const ExpenseTracker = () => {
       }  
     }
 
+    // let x = 
     getAllExpenseItemsInvoker();
 
   }, [])
 
   return (
-    <div>
-      Expense Tracker Component
-    </div>
+    <Container>
+      <h2>Expense Items</h2>
+      <ExpenseItems></ExpenseItems>
+    </Container>
   )
 }
 
