@@ -6,6 +6,7 @@ import { ExpenseItems } from "./expense-items"
 import IExpenseItem from "../models/expense"
 import { ExpenseByPayees } from "./expense-by-payees"
 import { ExpenseByPendingAmount } from "./expense-by-pending-amount"
+import { ExpenseCreator } from "./expense-creator"
 
 
 const ExpenseTracker = () => {
@@ -32,7 +33,10 @@ const ExpenseTracker = () => {
 
   return (
     <Container>
-      <h2>Expense Items</h2>
+      <h2>Expense Items
+
+        <ExpenseCreator></ExpenseCreator>
+      </h2>
       <ExpenseItems expenseItems={expenseItems}></ExpenseItems>
 
       <ExpenseByPayees expenseItems={expenseItems}></ExpenseByPayees>
