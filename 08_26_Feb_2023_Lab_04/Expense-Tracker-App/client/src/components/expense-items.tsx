@@ -4,7 +4,13 @@ import IExpenseItem from "../models/expense"
 
 import {format} from "date-fns";
 
-const ExpenseItems = () => {
+type ExpenseItemsModel = {
+
+  expenseItems : IExpenseItem[];
+
+}
+
+const ExpenseItems = ({expenseItems} : ExpenseItemsModel) => {
 
   const defaultExpenseItems : IExpenseItem[] = [
     {
@@ -52,7 +58,7 @@ const ExpenseItems = () => {
             <tbody>
 
               {
-                defaultExpenseItems.map( (expenseItem : IExpenseItem, index) => {
+                expenseItems.map( (expenseItem : IExpenseItem, index) => {
 
                   return (
                     <tr>
