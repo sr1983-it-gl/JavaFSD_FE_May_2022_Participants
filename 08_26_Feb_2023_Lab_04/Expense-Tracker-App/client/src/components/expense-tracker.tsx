@@ -35,7 +35,7 @@ const ExpenseTracker = () => {
     <Container>
       <h2>Expense Items
 
-        <ExpenseCreator></ExpenseCreator>
+        <ExpenseCreator expenseItems={expenseItems}></ExpenseCreator>
       </h2>
       <ExpenseItems expenseItems={expenseItems}></ExpenseItems>
 

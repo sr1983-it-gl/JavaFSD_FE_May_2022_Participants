@@ -2,13 +2,21 @@
 import {Button, Modal, Form} from "react-bootstrap"
 
 import {useState} from "react"
+import { getUniquePayeeNames } from "../services/expense-utils";
+import IExpenseItem from "../models/expense";
 
-const ExpenseCreator = () => {
+type ExpenseCreatorModel = {
+  expenseItems : IExpenseItem[]
+}
+
+const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
+
+  const uniquePayeeNames = getUniquePayeeNames(expenseItems)
 
   return (
 
@@ -35,10 +43,18 @@ const ExpenseCreator = () => {
               <Form.Label>Payee</Form.Label>
 
                 <Form.Select aria-label="Default select example">
-                  <option>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+
+                  <option>SELECT A PAYEE</option>
+
+                  {
+                    uniquePayeeNames.map( (payeeName) => {
+                        return (
+                          <option value={payeeName}>{payeeName}</option>
+                        )
+                    })
+                  }
+              
+                
                 </Form.Select>
 
             </Form.Group>
