@@ -3,7 +3,7 @@ import {Button, Modal, Form} from "react-bootstrap"
 
 import {FormEvent, useState, useRef} from "react"
 import { getUniquePayeeNames } from "../services/expense-utils";
-import IExpenseItem from "../models/expense";
+import IExpenseItem, { IExpenseCreateItem } from "../models/expense";
 
 type ExpenseCreatorModel = {
   expenseItems : IExpenseItem[]
@@ -27,10 +27,15 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
     event.preventDefault();
 
-    const expenseDescription = expenseDescriptionRef?.current?.value ;
-    const payeeName = payeeNameRef?.current?.value;
-    const price = priceRef?.current?.value;
-    const expenseDate = expenseDateRef?.current?.value;
+    const expenseDescription = 
+      (expenseDescriptionRef?.current?.value as string);
+    const payeeName = 
+      (payeeNameRef?.current?.value as string);
+    const price = 
+     parseFloat ( (priceRef?.current?.value as string));
+    const expenseDate = 
+      new Date(
+      (expenseDateRef?.current?.value as string));
 
     // Invoke the POST API
 
@@ -39,6 +44,15 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
     console.log(price);
     console.log(expenseDate);
 
+    const newExpenseItem : IExpenseCreateItem = {
+
+      expenseDescription: expenseDescription,
+      payeeName: payeeName,
+      price: price,
+      date: expenseDate
+    }
+
+    console.log("New Expense Item Object " + JSON.stringify(newExpenseItem));
 
     handleClose();
   }
