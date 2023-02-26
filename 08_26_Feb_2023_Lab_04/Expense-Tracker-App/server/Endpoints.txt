@@ -1,0 +1,16 @@
+#
+  GET
+  http://localhost:4000/items
+
+#
+  GET
+  http://localhost:4000/items/1
+
+#
+  POST
+  http://localhost:4000/items
+
+# 
+  GET
+  http://localhost:4000/items?payeeName=Ramesh
+  
