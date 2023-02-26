@@ -1,7 +1,7 @@
 
 import {Button, Modal, Form} from "react-bootstrap"
 
-import {useState} from "react"
+import {FormEvent, useState, useRef} from "react"
 import { getUniquePayeeNames } from "../services/expense-utils";
 import IExpenseItem from "../models/expense";
 
@@ -11,12 +11,37 @@ type ExpenseCreatorModel = {
 
 const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
+  const expenseDescriptionRef = useRef<HTMLInputElement>(null);
+  const payeeNameRef = useRef<HTMLSelectElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
+  const expenseDateRef = useRef<HTMLInputElement>(null);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true); 
 
   const uniquePayeeNames = getUniquePayeeNames(expenseItems)
+
+  const handleAddExpenseItem = (event : FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault();
+
+    const expenseDescription = expenseDescriptionRef?.current?.value ;
+    const payeeName = payeeNameRef?.current?.value;
+    const price = priceRef?.current?.value;
+    const expenseDate = expenseDateRef?.current?.value;
+
+    // Invoke the POST API
+
+    console.log(expenseDescription);
+    console.log(payeeName);
+    console.log(price);
+    console.log(expenseDate);
+
+
+    handleClose();
+  }
 
   return (
 
@@ -32,17 +57,17 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
       <Modal.Body>
 
-          <Form>
+          <Form onSubmit={handleAddExpenseItem}>
             
             <Form.Group className="mb-3" controlId="expenseDescription">
               <Form.Label>Expense Description</Form.Label>
-              <Form.Control type="text" placeholder="Enter expense description" />
+              <Form.Control type="text" placeholder="Enter expense description" ref={expenseDescriptionRef} />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="payeeName">
               <Form.Label>Payee</Form.Label>
 
-                <Form.Select aria-label="Default select example">
+                <Form.Select aria-label="Default select example" ref={payeeNameRef}>
 
                   <option>SELECT A PAYEE</option>
 
@@ -61,12 +86,12 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
             <Form.Group className="mb-3" controlId="price">
               <Form.Label>price</Form.Label>
-              <Form.Control type="number" placeholder="Enter price" />
+              <Form.Control type="number" placeholder="Enter price" ref={priceRef}/>
             </Form.Group>            
 
             <Form.Group className="mb-3" controlId="expenseDate">
               <Form.Label>Expense Date</Form.Label>
-              <Form.Control type="date" />
+              <Form.Control type="date" ref={expenseDateRef}/>
             </Form.Group>            
 
             <Button variant="primary" type="submit">
