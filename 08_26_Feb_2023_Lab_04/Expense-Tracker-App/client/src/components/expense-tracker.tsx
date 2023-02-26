@@ -31,11 +31,22 @@ const ExpenseTracker = () => {
 
   }, [])
 
+  const refreshParentUponNewExpenseAddition = (newlyCreatedExpenseItem : IExpenseItem) => {
+
+    setExpenseItems(
+      [
+        newlyCreatedExpenseItem,
+        ...expenseItems
+      ]
+    )
+    // Refresh code
+  }
+
   return (
     <Container>
       <h2>Expense Items
 
-        <ExpenseCreator expenseItems={expenseItems}></ExpenseCreator>
+        <ExpenseCreator expenseItems={expenseItems} refreshParent={refreshParentUponNewExpenseAddition}></ExpenseCreator>
       </h2>
       <ExpenseItems expenseItems={expenseItems}></ExpenseItems>
 

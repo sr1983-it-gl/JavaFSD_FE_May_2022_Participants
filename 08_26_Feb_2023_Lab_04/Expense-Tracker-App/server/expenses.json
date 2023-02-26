@@ -27,6 +27,20 @@
       "price": 400,
       "date": "2023-01-15",
       "id": 4
+    },
+    {
+      "expenseDescription": "expense-5",
+      "payeeName": "Ramesh",
+      "price": 500,
+      "date": "2023-02-05T00:00:00.000Z",
+      "id": 5
+    },
+    {
+      "expenseDescription": "expense-6",
+      "payeeName": "Rahul",
+      "price": 600,
+      "date": "2023-02-06T00:00:00.000Z",
+      "id": 6
     }
   ]
 }

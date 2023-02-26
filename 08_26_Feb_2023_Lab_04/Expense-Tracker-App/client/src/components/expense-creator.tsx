@@ -4,12 +4,14 @@ import {Button, Modal, Form} from "react-bootstrap"
 import {FormEvent, useState, useRef} from "react"
 import { getUniquePayeeNames } from "../services/expense-utils";
 import IExpenseItem, { IExpenseCreateItem } from "../models/expense";
+import { postExpenseItem } from "../services/expense";
 
 type ExpenseCreatorModel = {
-  expenseItems : IExpenseItem[]
+  expenseItems : IExpenseItem[];
+  refreshParent : (newlyCreatedExpenseItem : IExpenseItem) => void;
 }
 
-const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
+const ExpenseCreator = ({expenseItems, refreshParent} : ExpenseCreatorModel) => {
 
   const expenseDescriptionRef = useRef<HTMLInputElement>(null);
   const payeeNameRef = useRef<HTMLSelectElement>(null);
@@ -23,7 +25,7 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
 
   const uniquePayeeNames = getUniquePayeeNames(expenseItems)
 
-  const handleAddExpenseItem = (event : FormEvent<HTMLFormElement>) => {
+  const handleAddExpenseItem = async (event : FormEvent<HTMLFormElement>) => {
 
     event.preventDefault();
 
@@ -37,7 +39,6 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
       new Date(
       (expenseDateRef?.current?.value as string));
 
-    // Invoke the POST API
 
     console.log(expenseDescription);
     console.log(payeeName);
@@ -52,7 +53,14 @@ const ExpenseCreator = ({expenseItems} : ExpenseCreatorModel) => {
       date: expenseDate
     }
 
-    console.log("New Expense Item Object " + JSON.stringify(newExpenseItem));
+     // Invoke the POST API
+    const newlyCreatedExpenseItem 
+      = await postExpenseItem(newExpenseItem);
+
+    console.log("New Expense Item Object " + JSON.stringify(newlyCreatedExpenseItem));
+
+    // Call something on parent
+    refreshParent(newlyCreatedExpenseItem);
 
     handleClose();
   }

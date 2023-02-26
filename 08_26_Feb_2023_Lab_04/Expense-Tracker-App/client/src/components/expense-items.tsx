@@ -37,7 +37,7 @@ const ExpenseItems = ({expenseItems} : ExpenseItemsModel) => {
   ]
 
   const convertDateAsString = (date : Date) => {
-    //TODO
+    // TODO
     return format(new Date(), "yyyy-MM-dd");
   }
 
